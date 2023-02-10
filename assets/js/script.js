@@ -17,6 +17,9 @@ $("#search-button").on("click", function (event) {
 
             var todayTitle = $("<h2>").text(data.city.name + " (" + now + ") ");
             todayDiv.append(todayTitle);
+
+            var icon = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + data.list[0].weather[0].icon + "@2x.png");
+            todayTitle.append(icon);
         }
     })
 
