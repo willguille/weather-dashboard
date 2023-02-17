@@ -32,7 +32,10 @@ $("#search-button").on("click", function (event) {
             todayDiv.append(humidity);
         }
     })
-
+    // Add the city name to the search history
+    const searchHistoryItem = $("<li>").text(data.name);
+    historyDiv.append(searchHistoryItem);
+    
     $.ajax({
         url: forecastWeatherURL + city + APIKey,
         success: function (data) {
