@@ -20,6 +20,15 @@ $("#search-button").on("click", function (event) {
 
             var icon = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + data.list[0].weather[0].icon + "@2x.png");
             todayTitle.append(icon);
+
+            var temp = $("<p>").text("Temp: " + data.list[0].main.temp);
+            todayDiv.append(temp);
+
+            var wind = $("<p>").text("Wind: " + data.list[0].wind.speed + " KPH");
+            todayDiv.append(wind);
+
+            var humidity = $("<p>").text("Wind: " + data.list[0].main.humidity + "%");
+            todayDiv.append(humidity);
         }
     })
 
