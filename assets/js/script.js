@@ -22,7 +22,7 @@ $("#search-button").on("click", function (event) {
             var icon = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png");
             todayTitle.append(icon);
 
-            var temp = $("<p>").text("Temp: " + data.main.temp);
+            var temp = $("<p>").text("Temp: " + data.main.temp + "°C");
             todayDiv.append(temp);
 
             var wind = $("<p>").text("Wind: " + data.wind.speed + " KPH");
@@ -44,16 +44,17 @@ $("#search-button").on("click", function (event) {
             // Update the forecast HTML element with the data
             forecastDiv.empty();
 
-            for (let i = 0; i < data.list.length; i += 8) {
+            for (let i = 6; i < data.list.length; i += 8) {
                 const forecast = data.list[i];
 
                 forecastDiv.append(`
-                <div class="col-lg-2">
+                <div class="">
                     <div class="card">
                         <div class="card-body">
                             <h3>${new Date(forecast.dt * 1000).toLocaleDateString("en-GB", {day: "2-digit", month: "2-digit", year: "numeric"})}</h3>
                             <img src="http://openweathermap.org/img/w/${forecast.weather[0].icon}.png" alt="weather-icon">
-                            <p>Temperature: ${forecast.main.temp} &#8451;</p>
+                            <p>Temperature: ${forecast.main.temp} °C</p>
+                            <p>Wind: ${forecast.wind.speed} KPH</p>
                             <p>Humidity: ${forecast.main.humidity} %</p>
                         </div>
                     </div>
