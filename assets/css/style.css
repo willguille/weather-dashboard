@@ -4,3 +4,28 @@
     background: rgb(0,152,182);
     background: linear-gradient(90deg, rgba(0,152,182,1) 0%, rgba(9,9,121,1) 35%, rgba(2,0,36,1) 100%);
 }
+
+/* Form */
+
+#form-heading {
+    font-weight: bold;
+    font-size: 2em;
+}
+
+#search-button {
+    background-color: #090979;
+    color: white;
+    border-color: gray;
+}
+
+#search-button:hover {
+    background-color: #0098b6;
+    transition: 0.7s;
+}
+
+.list-group-item {
+    background-color: #c5c5c5;
+    margin-bottom: 1em;
+    border-radius: 0.50rem !important;
+    height: 2.75em;
+}
