@@ -1,0 +1,6 @@
+/* Header */
+
+.weather-header {
+    background: rgb(0,152,182);
+    background: linear-gradient(90deg, rgba(0,152,182,1) 0%, rgba(9,9,121,1) 35%, rgba(2,0,36,1) 100%);
+}
