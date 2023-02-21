@@ -30,39 +30,43 @@ $("#search-button").on("click", function (event) {
 
             var humidity = $("<p>").text("Wind: " + data.main.humidity + "%");
             todayDiv.append(humidity);
+
+            // Add the city name to the search history
+            const searchHistoryItem = $("<li>").text(data.name);
+            historyDiv.append(searchHistoryItem);
+
+            $.ajax({
+                url: forecastWeatherURL + city + APIKey,
+                success: function (data) {
+                    console.log(data);
+        
+                    // Update the forecast HTML element with the data
+                    forecastDiv.empty();
+        
+                    for (let i = 6; i < data.list.length; i += 8) {
+                        const forecast = data.list[i];
+        
+                        forecastDiv.append(`
+                        <div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3>${new Date(forecast.dt * 1000).toLocaleDateString("en-GB", {day: "2-digit", month: "2-digit", year: "numeric"})}</h3>
+                                    <img src="http://openweathermap.org/img/w/${forecast.weather[0].icon}.png" alt="weather-icon">
+                                    <p>Temperature: ${forecast.main.temp} °C</p>
+                                    <p>Wind: ${forecast.wind.speed} KPH</p>
+                                    <p>Humidity: ${forecast.main.humidity} %</p>
+                                </div>
+                            </div>
+                        </div>`
+                      );
+                    }  
+        
+                }
+            })
         }
     })
-    // // Add the city name to the search history
-    // const searchHistoryItem = $("<li>").text(data.name);
-    // historyDiv.append(searchHistoryItem);
+    
 
-    $.ajax({
-        url: forecastWeatherURL + city + APIKey,
-        success: function (data) {
-            console.log(data);
-
-            // Update the forecast HTML element with the data
-            forecastDiv.empty();
-
-            for (let i = 6; i < data.list.length; i += 8) {
-                const forecast = data.list[i];
-
-                forecastDiv.append(`
-                <div class="">
-                    <div class="card">
-                        <div class="card-body">
-                            <h3>${new Date(forecast.dt * 1000).toLocaleDateString("en-GB", {day: "2-digit", month: "2-digit", year: "numeric"})}</h3>
-                            <img src="http://openweathermap.org/img/w/${forecast.weather[0].icon}.png" alt="weather-icon">
-                            <p>Temperature: ${forecast.main.temp} °C</p>
-                            <p>Wind: ${forecast.wind.speed} KPH</p>
-                            <p>Humidity: ${forecast.main.humidity} %</p>
-                        </div>
-                    </div>
-                </div>`
-              );
-            }  
-
-        }
-    })
+    
 }
 )
