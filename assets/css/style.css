@@ -34,8 +34,19 @@
 
 #today {
     padding-left: 10px;
+    border-radius: 0.25rem;
 }
 
 h2, h3 {
     font-weight: bold;
 }
+
+#forecast {
+    margin-left: 0px;
+}
+.card {
+    margin-right: 2em;
+    background-color: #090979;
+    color: white;
+}
+
