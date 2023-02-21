@@ -16,6 +16,8 @@ $("#search-button").on("click", function (event) {
         success: function (data) {
             console.log(data);
 
+            todayDiv.empty();
+
             var todayTitle = $("<h2>").text(data.name + " (" + now + ") ");
             todayDiv.append(todayTitle);
 
@@ -34,6 +36,10 @@ $("#search-button").on("click", function (event) {
             // Add the city name to the search history
             const searchHistoryItem = $("<li>").text(data.name);
             historyDiv.append(searchHistoryItem);
+
+            // Clear the form input
+            $("#search-input").val("");
+
 
             $.ajax({
                 url: forecastWeatherURL + city + APIKey,
@@ -70,3 +76,12 @@ $("#search-button").on("click", function (event) {
     
 }
 )
+
+// Set up the event listener for the search history items
+historyDiv.on("click", "li", (event) => {
+    const cityName = $(event.target).text();
+  
+    // Trigger the form submission with the city name
+    $("#search-input").val(cityName);
+    $("#search-button").trigger("click");
+  });
