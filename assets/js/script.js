@@ -111,7 +111,8 @@ function renderSearchHistory() {
   
     // Loop through the search history and add each city to the history list
     for (let i = 0; i < searchHistory.length; i++) {
-      const cityName = searchHistory[i];
+      // Get the city name and capitalize the first letter
+      const cityName = searchHistory[i].charAt(0).toUpperCase() + searchHistory[i].slice(1);
       const historyItem = $("<li>").addClass("list-group-item").text(cityName);
       historyDiv.prepend(historyItem);
     }
