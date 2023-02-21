@@ -10,7 +10,9 @@ var APIKey = "&appid=32306d8e68f68c9295a794f157aaab66";
 
 $("#search-button").on("click", function (event) {
     event.preventDefault();
-    var city = $("#search-input").val();
+
+    // Get the city name from the search input and change the first character to upper case
+    var city = $("#search-input").val().charAt(0).toUpperCase() + $("#search-input").val().slice(1);
     $.ajax({
         url: todayWeatherURL + city + APIKey,
         success: function (data) {
@@ -35,6 +37,7 @@ $("#search-button").on("click", function (event) {
 
             // Update the history with the new city name
             updateHistory(city);
+            renderSearchHistory();
 
             // Clear the form input
             $("#search-input").val("");
@@ -79,8 +82,6 @@ $("#search-button").on("click", function (event) {
 // Set up the event listener for the search history items
 historyDiv.on("click", "li", (event) => {
     const cityName = $(event.target).text();
-
-    updateHistory(cityName);
   
     // Trigger the form submission with the city name
     $("#search-input").val(cityName);
