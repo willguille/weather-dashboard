@@ -100,8 +100,20 @@ function updateHistory(cityName) {
     searchHistory.push(cityName);
      // Save the search history to local storage
     localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
-    
     const newHistoryItem = $("<li>").addClass("list-group-item").text(cityName);
     historyDiv.prepend(newHistoryItem);
-  }
+}
  
+// Function to render the search history
+function renderSearchHistory() {
+    // Clear the history list
+    historyDiv.empty();
+  
+    // Loop through the search history and add each city to the history list
+    for (let i = 0; i < searchHistory.length; i++) {
+      const cityName = searchHistory[i];
+      const historyItem = $("<li>").addClass("list-group-item").text(cityName);
+      historyDiv.prepend(historyItem);
+    }
+}
+renderSearchHistory();
