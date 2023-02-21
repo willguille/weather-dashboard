@@ -29,3 +29,13 @@
     border-radius: 0.50rem !important;
     height: 2.75em;
 }
+
+/* Weather Forecast */
+
+#today {
+    padding-left: 10px;
+}
+
+h2, h3 {
+    font-weight: bold;
+}

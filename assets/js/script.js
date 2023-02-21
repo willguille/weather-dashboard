@@ -10,6 +10,9 @@ var APIKey = "&appid=32306d8e68f68c9295a794f157aaab66";
 
 $("#search-button").on("click", function (event) {
     event.preventDefault();
+    // Style the today div on click
+    todayDiv.attr("style", "border: solid 1px black;");
+    
 
     // Get the city name from the search input and change the first character to upper case
     var city = $("#search-input").val().charAt(0).toUpperCase() + $("#search-input").val().slice(1);
@@ -50,11 +53,16 @@ $("#search-button").on("click", function (event) {
         
                     // Update the forecast HTML element with the data
                     forecastDiv.empty();
+                    var forecastTitle = $("<h2>").text("5-Day Forecast:");
+                    forecastDiv.append(forecastTitle);
+
+                    var weatherCardsDiv = $("<div>").attr("class", "weather-cards-div d-flex");
+                    forecastDiv.append(weatherCardsDiv);
         
                     for (let i = 6; i < data.list.length; i += 8) {
                         const forecast = data.list[i];
         
-                        forecastDiv.append(`
+                        weatherCardsDiv.append(`
                         <div>
                             <div class="card">
                                 <div class="card-body">
