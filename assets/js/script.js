@@ -33,9 +33,7 @@ $("#search-button").on("click", function (event) {
             var humidity = $("<p>").text("Wind: " + data.main.humidity + "%");
             todayDiv.append(humidity);
 
-            // Add the city name to the search history
-            const searchHistoryItem = $("<li>").text(data.name);
-            historyDiv.append(searchHistoryItem);
+            updateHistory(city);
 
             // Clear the form input
             $("#search-input").val("");
@@ -80,8 +78,28 @@ $("#search-button").on("click", function (event) {
 // Set up the event listener for the search history items
 historyDiv.on("click", "li", (event) => {
     const cityName = $(event.target).text();
+
+    updateHistory(cityName);
   
     // Trigger the form submission with the city name
     $("#search-input").val(cityName);
     $("#search-button").trigger("click");
-  });
+});
+
+// Initialize an array to store the cities in the history
+let historyCities = [];
+
+function updateHistory(cityName) {
+    // Check if the city is already in the history
+    if (historyCities.includes(cityName)) {
+      return;
+    }
+  
+    // Add the city to the history array and the history div
+    historyCities.push(cityName);
+    const newHistoryItem = $("<li>").addClass("list-group-item").text(cityName);
+    historyDiv.prepend(newHistoryItem);
+  }
+  
+  // Update the history with the new city name
+ 
